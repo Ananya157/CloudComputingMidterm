@@ -1,0 +1,140 @@
+.mainHeader {
+    background: #000C29;
+    color: white;
+}
+
+.sportsClubTitle {
+    font-size: 30px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: currentColor;
+}
+
+.sportsClubContainer {
+    padding: 30px;
+    ;
+}
+
+.userIcon {
+    font-size: 35px;
+    cursor: pointer;
+    color: white;
+    background: #000C29;
+    margin: 0px;
+    padding: 0px;
+    margin-right: 45px;
+}
+
+.container.et_menu_container {
+    z-index: 99;
+    position: relative;
+    text-align: left;
+    width: 80%;
+    max-width: 1080px;
+    margin: auto;
+}
+
+.list {
+    left: 0;
+    clear: left !important;
+    padding: 20px;
+    display: inline-block;
+    font-size: 14px;
+    position: relative;
+    line-height: 1em;
+    word-wrap: break-word;
+}
+
+.topMenu {
+    padding-left: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.list:hover {
+    background-color: rgb(150, 145, 145);
+    cursor: pointer;
+}
+
+.list:active {
+    background-color: rgb(150, 145, 145);
+}
+
+.mainHeader1 {
+    background: #EDEAE5;
+}
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 80px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+}
+
+
+
+.headerContent {
+    cursor: pointer;
+}
+
+
+.dropdownList {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdownList-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 80px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdownList-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.scrolled{
+    position: fixed;
+    width: -webkit-fill-available;
+
+}
