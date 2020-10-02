@@ -40,7 +40,7 @@ class StudentInfo extends Component {
                 <div className="card cardStyle">
                     <div className="searchHeader info">
                         <span>
-                            <Link to={`/StudentList`} >
+                            <Link to={`/`} >
                                  <button className = "backButton" >
                                     Back
                                 </button> 

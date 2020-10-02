@@ -143,12 +143,27 @@ input[type="radio"] {
 }
 
 .addReviewButton {
-    margin-top: -11px;
+    padding: 20px;
+    /* margin-top: -11px; */
+    margin: 10px;
     border-bottom-width: 0px;
     border-radius: 10px;
     width: auto;
+    background-color: #0275d8;
+    color: #fff;
+    cursor: pointer;
 }
-
+.cancelReviewButton {
+    padding: 20px;
+    cursor: pointer;
+    margin: 10px;
+    border-bottom-width: 0px;
+    border-radius: 10px;
+    width: auto;
+    background-color: #0275d8;
+    color: #fff;
+    float: right;
+}
 .userinfoHeader {
     font-size: 35px;
     padding: 5px;
@@ -217,6 +232,9 @@ input[type="radio"] {
 }
 .individualButton{
     margin-right: 20px;
+    background-color: #0275d8;
+    color: #fff;
+    padding: 5px;
 }
 
 .textarea{

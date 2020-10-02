@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../CSS/Common.css';
+import Header from './Header';
 import { Link } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 
@@ -93,8 +94,8 @@ class StudentList extends Component {
 
     render() {
         return (
-
-
+        <div>
+            <Header/>
             <div className="card cardStyle" style={{ opacity: "0.9" }}>
                 <div className="container searchHeader">
                     <div className="row">
@@ -105,7 +106,7 @@ class StudentList extends Component {
                         <div className="col-lg-2" style={{ margin: "auto" }}>
                             <span className="email">
                                 <Link to={`/AddStudent`} >
-                                    <button className="individualButton">  Add Student  </button>
+                                    <button className="cancelReviewButton">  Add Student  </button>
                                 </Link>
                             </span>
                         </div>
@@ -127,7 +128,7 @@ class StudentList extends Component {
                                             Level: {student.level}
                                         </span>
                                         <span className="email">
-                                            <Link to={`/UpdateReview/`} >
+                                            <Link to={`/UpdateStudentInfo/${student.id}`} >
                                                 <button className="individualButton"> Update </button>
                                             </Link>
                                             <button type="button" className="individualButton"  onClick={() => this.deleteStudent(student.id)}>
@@ -161,7 +162,7 @@ class StudentList extends Component {
 
                 </div>
             </div>
-
+        </div>
         )
     }
 

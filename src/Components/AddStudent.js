@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../CSS/Common.css';
+import '../CSS/Header.css';
 import { Redirect } from 'react-router'
 import { Link } from 'react-router-dom'
 
@@ -63,10 +64,19 @@ class AddStudent extends Component {
     render() {
         const isInstered = this.state.isInstered;
         return (
+            <div>
+                
+           <div id="page-container" className='mainHeader'>
+                    <div className="container sportsClubContainer">
+                        <span className="sportsClubTitle">
+                            <div className="header">
+                                <span>Add Student</span>
+                            </div>
+                        </span>
+                    </div>
+                </div> 
             <div className="card cardStyle">
                 <div className="container searchHeader">
-                    <div className="contactUsHeader"><br />Add Student</div>
-                    <br />
                     <form onSubmit={this.submitHandler}>
                         <div className="row">
                             <div className="col-lg-6">
@@ -100,25 +110,29 @@ class AddStudent extends Component {
                         <textarea className="textarea" type="text" id="expectation" value={this.state.expectation} onChange={this.changehandler} name="expectation" placeholder="Please mention your expectation in here..." />
                         <br /> <br /><br /> <br />
                         <div>
-                            <button type="submit" className="addReviewButton">Add Student</button>
+                            <span>
+                                <button type="submit" className="addReviewButton">Add Student</button>
+                            </span>
+                           <span>
+                               <Link to={`/`}>
+                                    <button className="cancelReviewButton">Cancel</button>
+                                </Link>
+                            </span> 
+                            
                         </div>
-                        <div className="email">
-                            <Link to={`/StudentList`}>
-                                <button className="addReviewButton"  >Cancel</button>
-                            </Link>
-
-                        </div>
+                       
                        {isInstered} 
                         {
                             isInstered ? (
-                                <Redirect to={`/StudentList`} />
+                                <Redirect to={`/`} />
                             ) : (
                                     <span>{this.state.responseMessage}</span>
                                 )
                         }
-                    </form >
-                </div >
-            </div >
+                    </form>
+                </div>
+            </div>
+            </div>
         )
     }
 }

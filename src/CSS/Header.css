@@ -13,7 +13,12 @@
     padding: 30px;
     ;
 }
-
+.header{
+    margin-top: 10px;
+    border-bottom-width: 0px;
+    border-radius: 10px;
+    width: auto;
+}
 .userIcon {
     font-size: 35px;
     cursor: pointer;

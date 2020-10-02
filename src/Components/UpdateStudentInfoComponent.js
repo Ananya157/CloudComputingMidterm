@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import '../CSS/Common.css';
-import UpdateReview from './UpdateReview'
+import UpdateStudentInfo from './UpdateStudentInfo'
 
-class UpdateReviewComponent extends Component {
+class UpdateStudentInfoComponent extends Component {
     render() {
         return (
             <div>
                 <div className=" backgroundImage">
                     <div className="container">
-                        <UpdateReview />
+                        <UpdateStudentInfo />
                     </div>
 
                 </div>
@@ -20,4 +20,4 @@ class UpdateReviewComponent extends Component {
 
 }
 
-export default UpdateReviewComponent
+export default UpdateStudentInfoComponent
