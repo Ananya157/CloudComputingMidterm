@@ -70,7 +70,7 @@ class GoogleBtn extends Component {
   }
 
   handleLogoutFailure (response) {
-    this.props.history.push('/StudentList');
+    //this.props.history.push('/StudentList');
     //alert('Failed to log out')
   }
 
