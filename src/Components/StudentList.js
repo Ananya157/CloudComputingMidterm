@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import '../CSS/Common.css';
-import Header from './Header';
 import { Link } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 
-class StudentList extends Component {
-    
+class StudentList extends Component { 
     constructor(props) {
         super(props);
-
         this.state = {
             studentList: [],
             offset: 0,
@@ -16,7 +13,8 @@ class StudentList extends Component {
             perPage: 5,
             currentPage: 0,
             validationError: "",
-            clicked: false
+            clicked: false,
+            value: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handlePageClick = this.handlePageClick.bind(this);
@@ -48,9 +46,14 @@ class StudentList extends Component {
         this.forceUpdate();
     }
     componentDidMount() {
-        var that = this;
+        console.log("props: ", localStorage.getItem('ak'))
+        var that = this;  
         fetch('https://kgt1c7bjf4.execute-api.us-east-1.amazonaws.com/dev/students', {
-            method: 'GET'
+            method: 'GET',
+            headers: new Headers({
+                'Authorization': 'Basic ' + btoa('username:password'),
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }),
         }).then((responseText) => {
             const response = responseText.json();
             response.then(function (response) {
@@ -93,9 +96,9 @@ class StudentList extends Component {
    }
 
     render() {
+        
         return (
         <div>
-            <Header/>
             <div className="card cardStyle" style={{ opacity: "0.9" }}>
                 <div className="container searchHeader">
                     <div className="row">

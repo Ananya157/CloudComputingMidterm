@@ -327,3 +327,9 @@ input[type="radio"] {
       border-radius: unset
   }
 
+  input[disabled] {
+      padding: 2px;
+      margin: 0 0 0 0;
+      background-color: lightgray;
+  }
+

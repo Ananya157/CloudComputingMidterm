@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import '../CSS/Common.css';
 import { Redirect } from 'react-router'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 class UpdateStudentInfo extends Component {
     constructor(props) {
@@ -23,39 +24,50 @@ class UpdateStudentInfo extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    handleOptionChange = (e) => {
-        this.setState({ studentLevel: e.target.value });
-        console.log(this.state.rating)
-    }
 
     submitHandler = (e) => {
         e.preventDefault()
-        console.log(this.state.studentCourse)
+        
         var body = {
-            "level": this.state.studentLevel,
             "course": this.state.studentCourse,
             "expectation": this.state.studentExpectation
         }
         console.log(body)
         const url = 'https://kgt1c7bjf4.execute-api.us-east-1.amazonaws.com/dev/students'
-        var that = this;
-        fetch(url, {
-            method: 'PUT',
-            body: JSON.stringify(body)
-        }).then((responseText) => {
-            const response = responseText.json();
-            response.then(function (response) {
-                that.setState({ responseMessage: response.success })
-                console.log(that.state.responseMessage)
-                if (that.state.responseMessage) {
-                    that.setState({ isUpdated: true })
-                    console.log(that.state.isUpdated)
-                }
 
-            });
-        }).catch(error => {
-            console.log(error)
+        axios({
+            url,
+            method:"PUT",
+            data:body,
+            headers:{
+                 "Content-Type": "application/json",
+                 'Access-Control-Allow-Methods': '*'
+            }
         })
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => console.log(err))
+
+        // fetch(url, {
+        //     method: 'PUT',
+        //     mode:"cors",
+            
+            
+        // }).then((responseText) => {
+        //     const response = responseText.json();
+        //     response.then(function (response) {
+        //         that.setState({ responseMessage: response.success })
+        //         console.log(that.state.responseMessage)
+        //         if (that.state.responseMessage) {
+        //             that.setState({ isUpdated: true })
+        //             console.log(that.state.isUpdated)
+        //         }
+
+        //     });
+        // }).catch(error => {
+        //     console.log(error)
+        // })
     }
     componentWillMount() {
          var str = window.location.href
@@ -105,19 +117,19 @@ class UpdateStudentInfo extends Component {
                                 <label className="userLabel" htmlFor="name">Level:</label>
                                 <br/>
                                  <span className="radioButton">
-                                    <label><input type="radio" value="BS" checked={this.state.studentLevel === "BS"} onChange={this.handleOptionChange} /> BS </label>
-                                    <label><input type="radio" value="MS" checked={this.state.studentLevel === "MS"} onChange={this.handleOptionChange} /> MS </label>
+                                    <label><input type="radio" value="BS" checked={this.state.studentLevel === "BS"} disabled = "disabled" /> BS </label>
+                                    <label><input type="radio" value="MS" checked={this.state.studentLevel === "MS"} disabled = "disabled" /> MS </label>
                                 </span>
                             </div>
                             <div className="col-lg-6">
                                 <label className="userLabel" htmlFor="title">Course:</label>
                                 <br />
-                                <input className="inputText" type="text" id="course" value={this.state.studentCourse} name="course" onChange={this.changehandler} placeholder="Enter the course" />
+                                <input className="inputText" type="text" id="studentCourse" value={this.state.studentCourse} name="studentCourse" onChange={this.changehandler} placeholder="Enter the course" />
                             </div>
                         </div> 
                         <br /> <br />
                         <label className="userLabel" htmlFor="title">Expectation:</label><br />
-                        <textarea className="textarea" type="text" id="expectation" value={this.state.studentExpectation} onChange={this.changehandler} name="expectation" placeholder="Please mention your expectation in here..." />
+                        <textarea className="textarea" type="text" id="studentExpectation" value={this.state.studentExpectation} onChange={this.changehandler} name="studentExpectation" placeholder="Please mention your expectation in here..." />
                         <br /> <br /><br /> <br />
                         <div>
                             <span>
