@@ -48,7 +48,7 @@ class GoogleBtn extends Component {
             localStorage.setItem('st', st);
             localStorage.setItem('sk', sk);
             console.log(this.state)
-            this.props.history.push('/StudentList', { detail: {ak,sk,st}});
+            this.props.history.push('/StudentList');
           })
           .catch((error) => {
             console.log('Error fetching the feed: ', error);
@@ -61,14 +61,15 @@ class GoogleBtn extends Component {
       isLogined: false,
       accessToken: ''
     }));
+    this.props.history.push('/StudentList');
   }
 
   handleLoginFailure (response) {
-    alert('Failed to log in')
+    //alert('Failed to log in')
   }
 
   handleLogoutFailure (response) {
-    alert('Failed to log out')
+    //alert('Failed to log out')
   }
 
   render() {
