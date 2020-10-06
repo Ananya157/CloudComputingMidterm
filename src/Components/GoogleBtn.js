@@ -65,12 +65,12 @@ class GoogleBtn extends Component {
   }
 
   handleLoginFailure (response) {
-    this.props.history.push('/StudentList');
+    //this.props.history.push('/StudentList');
     //alert('Failed to log in')
   }
 
   handleLogoutFailure (response) {
-    //this.props.history.push('/StudentList');
+    this.props.history.push('/StudentList');
     //alert('Failed to log out')
   }
 
