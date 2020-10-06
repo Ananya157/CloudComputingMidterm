@@ -65,6 +65,7 @@ class GoogleBtn extends Component {
   }
 
   handleLoginFailure (response) {
+    alert(response)
     //this.props.history.push('/StudentList');
     //alert('Failed to log in')
   }
