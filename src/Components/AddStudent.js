@@ -114,7 +114,7 @@ class AddStudent extends Component {
                                 <button type="submit" className="addReviewButton">Add Student</button>
                             </span>
                            <span>
-                               <Link to={`/`}>
+                               <Link to={`/StudentList`}>
                                     <button className="cancelReviewButton">Cancel</button>
                                 </Link>
                             </span> 
@@ -124,7 +124,7 @@ class AddStudent extends Component {
                        {isInstered} 
                         {
                             isInstered ? (
-                                <Redirect to={`/`} />
+                                <Redirect to={`/StudentList`} />
                             ) : (
                                     <span>{this.state.responseMessage}</span>
                                 )

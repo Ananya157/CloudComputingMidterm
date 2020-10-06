@@ -136,7 +136,7 @@ class UpdateStudentInfo extends Component {
                                 <button type="submit" className="addReviewButton">Update Student Info</button>
                             </span>
                            <span>
-                               <Link to={`/`}>
+                               <Link to={`/StudentList`}>
                                     <button className="cancelReviewButton">Cancel</button>
                                 </Link>
                             </span> 
@@ -144,7 +144,7 @@ class UpdateStudentInfo extends Component {
                         </div>
                         {
                             isUpdated ? (
-                                <Redirect to={`/`} />
+                                <Redirect to={`/StudentList`} />
                             ) : (
                                     <span>{this.state.responseMessage}</span>
                                 )

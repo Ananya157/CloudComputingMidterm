@@ -63,10 +63,8 @@ input[type="radio"] {
 }
 
 .searchHeader {
-    margin-left: 130px;
     color: black;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    margin-right: 50px;
 }
 
 .searchButton {

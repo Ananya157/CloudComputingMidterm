@@ -46,14 +46,15 @@ class StudentList extends Component {
         this.forceUpdate();
     }
     componentDidMount() {
-        console.log("props: ", localStorage.getItem('ak'))
-        var that = this;  
+        var that = this; 
+        // var requestOptions
+        // aws4.sign(requestOptions, {
+        //     secretAccessKey: localStorage.getItem('sk'),
+        //     accessKeyId: localStorage.getItem('ak'),
+        //     sessionToken: localStorage.getItem('st')
+        // });
         fetch('https://kgt1c7bjf4.execute-api.us-east-1.amazonaws.com/dev/students', {
-            method: 'GET',
-            headers: new Headers({
-                'Authorization': 'Basic ' + btoa('username:password'),
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }),
+            method: 'GET'
         }).then((responseText) => {
             const response = responseText.json();
             response.then(function (response) {
