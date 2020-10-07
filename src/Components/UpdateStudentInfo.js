@@ -27,70 +27,59 @@ class UpdateStudentInfo extends Component {
 
     submitHandler = (e) => {
         e.preventDefault()
-        
+        var str = window.location.href
+        var res = str.split("/UpdateStudentInfo/");
+       var that = this; 
         var body = {
             "course": this.state.studentCourse,
             "expectation": this.state.studentExpectation
         }
         console.log(body)
-        const url = 'https://kgt1c7bjf4.execute-api.us-east-1.amazonaws.com/dev/students'
-
-        axios({
-            url,
-            method:"PUT",
-            data:body,
-            headers:{
-                 "Content-Type": "application/json",
-                 'Access-Control-Allow-Methods': '*'
-            }
-        })
-        .then(res => {
-            console.log(res)
-        })
-        .catch(err => console.log(err))
-
-        // fetch(url, {
-        //     method: 'PUT',
-        //     mode:"cors",
-            
-            
-        // }).then((responseText) => {
-        //     const response = responseText.json();
-        //     response.then(function (response) {
-        //         that.setState({ responseMessage: response.success })
-        //         console.log(that.state.responseMessage)
-        //         if (that.state.responseMessage) {
-        //             that.setState({ isUpdated: true })
-        //             console.log(that.state.isUpdated)
-        //         }
-
-        //     });
-        // }).catch(error => {
-        //     console.log(error)
-        // })
-    }
-    componentWillMount() {
-         var str = window.location.href
-        var res = str.split("/UpdateStudentInfo/");
-
         const url = 'https://kgt1c7bjf4.execute-api.us-east-1.amazonaws.com/dev/students/' + res[1]
-        var that = this;
         fetch(url, {
-            method: 'GET'
+            method: 'POST',
+             body: JSON.stringify(body)
         }).then((responseText) => {
             const response = responseText.json();
             response.then(function (response) {
-                console.log(response.data[0].students)
-                that.setState({ studentId: response.data[0].students.id })
-                that.setState({ studentName: response.data[0].students.fullname })
-                that.setState({ studentEmail: response.data[0].students.email  })
-                that.setState({ studentLevel: response.data[0].students.level  })
-                that.setState({ studentCourse: response.data[0].students.course  })
-                that.setState({ studentExpectation: response.data[0].students.expectation  })
+                that.setState({ responseMessage: response.success })
+                console.log(that.state.responseMessage)
+                if (that.state.responseMessage) {
+                    that.setState({ isUpdated: true })
+                    console.log(that.state.isUpdated)
+                }
+
             });
         }).catch(error => {
             console.log(error)
         })
+    }
+    componentWillMount() {
+        var str = window.location.href
+        var res = str.split("/UpdateStudentInfo/");
+        console.log(res[1])
+         var isLogined = localStorage.getItem('isLogined');
+         if (isLogined) {
+            const url = 'https://kgt1c7bjf4.execute-api.us-east-1.amazonaws.com/dev/students/' + res[1]
+            console.log(url)
+            var that = this;
+            fetch(url, {
+                method: 'GET'
+            }).then((responseText) => {
+                const response = responseText.json();
+                response.then(function (response) {
+                    console.log(response.data[0].students)
+                    that.setState({ studentId: response.data[0].students.id })
+                    that.setState({ studentName: response.data[0].students.fullname })
+                    that.setState({ studentEmail: response.data[0].students.email  })
+                    that.setState({ studentLevel: response.data[0].students.level  })
+                    that.setState({ studentCourse: response.data[0].students.course  })
+                    that.setState({ studentExpectation: response.data[0].students.expectation  })
+                });
+            }).catch(error => {
+                console.log(error)
+            })
+        }
     }
 
     render() {

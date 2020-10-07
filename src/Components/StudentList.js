@@ -46,29 +46,33 @@ class StudentList extends Component {
         this.forceUpdate();
     }
     componentDidMount() {
-        var that = this; 
+        var that = this;
+        var isLogined = localStorage.getItem('isLogined');
+        if(isLogined){
+            fetch('https://kgt1c7bjf4.execute-api.us-east-1.amazonaws.com/dev/students', {
+                method: 'GET'
+            }).then((responseText) => {
+                const response = responseText.json();
+                response.then(function (response) {
+                    var data = response.data[0].students;
+                    var slice = data.slice(that.state.offset, that.state.offset + that.state.perPage)
+                    that.setState({
+                        pageCount: Math.ceil(data.length / that.state.perPage),
+                        orgStudentList: response.data[0].students,
+                        studentList: slice
+                    })
+                });
+            }).catch(error => {
+                console.log(error)
+            })
+        }
         // var requestOptions
         // aws4.sign(requestOptions, {
         //     secretAccessKey: localStorage.getItem('sk'),
         //     accessKeyId: localStorage.getItem('ak'),
         //     sessionToken: localStorage.getItem('st')
         // });
-        fetch('https://kgt1c7bjf4.execute-api.us-east-1.amazonaws.com/dev/students', {
-            method: 'GET'
-        }).then((responseText) => {
-            const response = responseText.json();
-            response.then(function (response) {
-                var data = response.data[0].students;	
-                var slice = data.slice(that.state.offset, that.state.offset + that.state.perPage)
-                that.setState({
-                    pageCount: Math.ceil(data.length / that.state.perPage),
-                    orgStudentList: response.data[0].students,
-                    studentList: slice
-                })
-            });
-        }).catch(error => {
-            console.log(error)
-        })
+        
     }
 
     handleChange(event) {
@@ -79,21 +83,24 @@ class StudentList extends Component {
    deleteStudent(id){
        console.log(id)
        var that = this;
-       var url = 'https://kgt1c7bjf4.execute-api.us-east-1.amazonaws.com/dev/students/' + id;
-       fetch(url, {
-            method: 'DELETE'
-        }).then((responseText) => {
-            const response = responseText.json();
-            response.then(function (result) {
-                console.log(result)
-                if (result.success) {
-                    alert('Deleted Student Record');
-                    that.componentDidMount();
-                }
-            }); 
-        }).catch(error => {
-            console.log(error)
-        })
+       var isLogined = localStorage.getItem('isLogined');
+       if (isLogined) {
+        var url = 'https://kgt1c7bjf4.execute-api.us-east-1.amazonaws.com/dev/students/' + id;
+        fetch(url, {
+                method: 'DELETE'
+            }).then((responseText) => {
+                const response = responseText.json();
+                response.then(function (result) {
+                    console.log(result)
+                    if (result.success) {
+                        alert('Deleted Student Record');
+                        that.componentDidMount();
+                    }
+                }); 
+            }).catch(error => {
+                console.log(error)
+            })
+        }
    }
 
     render() {

@@ -30,34 +30,37 @@ class AddStudent extends Component {
 
     submitHandler = (e) => {
         e.preventDefault()
-        console.log(this.state.selectedOption)
-        var body = {
-            "fullname": this.state.name,
-            "email": this.state.email,
-            "level": this.state.selectedOption,
-            "course": this.state.course,
-            "expectation": this.state.expectation
-        }
-        console.log(body)
-        const url = 'https://kgt1c7bjf4.execute-api.us-east-1.amazonaws.com/dev/students'
-        var that = this;
-        fetch(url, {
-            method: 'POST',
-            body: JSON.stringify(body)
-        }).then((responseText) => {
-            const response = responseText.json();
-            response.then(function (response) {
-                that.setState({ responseMessage: response.success })
-                console.log(that.state.responseMessage)
-                if (that.state.responseMessage) {
-                    that.setState({ isInstered: true })
-                    console.log(that.state.isInstered)
-                }
+         var isLogined = localStorage.getItem('isLogined');
+         if (isLogined) {
+            console.log(this.state.selectedOption)
+            var body = {
+                "fullname": this.state.name,
+                "email": this.state.email,
+                "level": this.state.selectedOption,
+                "course": this.state.course,
+                "expectation": this.state.expectation
+            }
+            console.log(body)
+            const url = 'https://kgt1c7bjf4.execute-api.us-east-1.amazonaws.com/dev/students'
+            var that = this;
+            fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(body)
+            }).then((responseText) => {
+                const response = responseText.json();
+                response.then(function (response) {
+                    that.setState({ responseMessage: response.success })
+                    console.log(that.state.responseMessage)
+                    if (that.state.responseMessage) {
+                        that.setState({ isInstered: true })
+                        console.log(that.state.isInstered)
+                    }
 
-            });
-        }).catch(error => {
-            console.log(error)
-        })
+                });
+            }).catch(error => {
+                console.log(error)
+            })
+        }
     }
     
 

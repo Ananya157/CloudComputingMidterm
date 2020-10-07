@@ -44,6 +44,7 @@ class GoogleBtn extends Component {
               sessiontoken: st
               
             }));
+            localStorage.setItem('isLogined',this.state.isLogined);
             localStorage.setItem('ak', ak);
             localStorage.setItem('st', st);
             localStorage.setItem('sk', sk);
